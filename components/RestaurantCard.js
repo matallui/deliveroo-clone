@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { StarIcon } from 'react-native-heroicons/solid';
 import { LocationMarkerIcon } from 'react-native-heroicons/outline';
+import { useNavigation } from '@react-navigation/native';
 
 const RestaurantCard = ({
   id,
@@ -15,8 +16,25 @@ const RestaurantCard = ({
   long,
   lat,
 }) => {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate('Restaurant', {
+      id,
+      imgUrl,
+      title,
+      rating,
+      genre,
+      address,
+      short_description,
+      dishes,
+      long,
+      lat,
+    });
+  };
+
   return (
-    <TouchableOpacity className='bg-white mr-3 shadow-sm'>
+    <TouchableOpacity onPress={handlePress} className='bg-white mr-3 shadow-sm'>
       <Image
         source={{
           uri: imgUrl,
