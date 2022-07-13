@@ -10,7 +10,11 @@ import {
 } from 'react-native';
 import { XCircleIcon } from 'react-native-heroicons/solid';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromBasket, selectBasketItems, selectBasketTotal } from '../features/basketSlice';
+import {
+  removeFromBasket,
+  selectBasketItems,
+  selectBasketTotal,
+} from '../features/basketSlice';
 import { selectRestaurant } from '../features/restaurantSlice';
 import { urlFor } from '../sanity';
 
@@ -59,7 +63,10 @@ const BasketScreen = () => {
         </View>
         <ScrollView className='divide-y divide-gray-200'>
           {Object.entries(groupedItems).map(([key, items]) => (
-            <View key={key} className='flex-row items-center space-x-3 bg-white py-2 px-5'>
+            <View
+              key={key}
+              className='flex-row items-center space-x-3 bg-white py-2 px-5'
+            >
               <Text className='text-[#00ccbb]'>{items.length} x</Text>
               <Image
                 source={{
@@ -94,8 +101,13 @@ const BasketScreen = () => {
             <Text className='font-extrabold'>${5.99 + basketTotal}</Text>
           </View>
 
-          <TouchableOpacity className='rounded-lg bg-[#00ccbb] p-4'>
-            <Text className='text-center text-white text-lg font-bold'>Place Order</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('PreparingOrder')}
+            className='rounded-lg bg-[#00ccbb] p-4'
+          >
+            <Text className='text-center text-white text-lg font-bold'>
+              Place Order
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
